@@ -1,14 +1,53 @@
 package com.kayque.socialnetwork.services;
 
+import java.nio.CharBuffer;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
+import com.kayque.socialnetwork.dto.CredentialsDto;
 import com.kayque.socialnetwork.dto.UserDto;
+import com.kayque.socialnetwork.entities.User;
+import com.kayque.socialnetwork.exceptions.AppException;
+import com.kayque.socialnetwork.mappers.UserMapper;
+import com.kayque.socialnetwork.repositories.UserRepository;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class AuthenticationService {
 
+	@Autowired
+	private UserRepository userRepository;
 
-	 
-	 
+	@Autowired
+	private  PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private  UserMapper userMapper;
+
+
+	@Transactional
+	public UserDto authenticate(CredentialsDto credentialsDto) {
+		User user = userRepository.findByLogin(credentialsDto.getLogin()).orElse(null);
+
+		if (passwordEncoder.matches(CharBuffer.wrap(credentialsDto.getPassword()), user.getPassword())) {
+			log.debug("User {} authenticated correctly", credentialsDto.getLogin());
+			return userMapper.toUserDto(user);
+		}
+		throw new HttpClientErrorException(null);
+	}
+
+	public UserDto findByLogin(String login) {
+		User user = userRepository.findByLogin(login).orElseThrow(() -> new AppException("Login not found", HttpStatus.NOT_FOUND));
+
+		return userMapper.toUserDto(user);
+	}
+
 }

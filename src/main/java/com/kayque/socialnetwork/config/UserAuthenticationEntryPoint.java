@@ -13,7 +13,6 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kayque.socialnetwork.dto.ErrorDto;
 
 
 
@@ -31,7 +30,7 @@ public class UserAuthenticationEntryPoint implements AuthenticationEntryPoint {
 	
 		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		response.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-		MAPPER.writeValue(response.getOutputStream(),new ErrorDto("Unauthorized Path") );
+		//MAPPER.writeValue(response.getOutputStream(),errorDto.setMessage("Unauthorized Path") );
 	}
 
 }

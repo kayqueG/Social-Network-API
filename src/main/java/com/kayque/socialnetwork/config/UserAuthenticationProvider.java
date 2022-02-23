@@ -11,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import com.kayque.socialnetwork.dto.CredentialsDto;
 import com.kayque.socialnetwork.dto.UserDto;
 import com.kayque.socialnetwork.services.AuthenticationService;
 
@@ -50,8 +51,8 @@ public class UserAuthenticationProvider {
                 .compact();
     }
     
-    public Authentication validatetToken(String token) {
-    	Jwts.parser()
+    public Authentication validateToken(String token) {
+    	String login = Jwts.parser()
     	.setSigningKey(secretKey)
     	.parseClaimsJws(token)
     	.getBody()
@@ -61,6 +62,11 @@ public class UserAuthenticationProvider {
     	UserDto userDto= authenticationService.findByLogin(login);
     	
     	return new UsernamePasswordAuthenticationToken(userDto,null,Collections.emptyList());
+    }
+    
+    public Authentication validateCredentials(CredentialsDto credentialsDto) {
+        UserDto user = authenticationService.authenticate(credentialsDto);
+        return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
     }
 
 
