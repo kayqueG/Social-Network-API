@@ -1,9 +1,17 @@
 package com.kayque.socialnetwork.dto;
 
+import java.util.List;
+
 public class ProfileDto {
 
 	
 	private UserSummaryDto userDto;
+	 private List<UserSummaryDto> friends;
+	    private List<MessageDto> messages;
+	    private List<ImageDto> images;
+
+	
+	
 
 	public UserSummaryDto getUserDto() {
 		return userDto;
@@ -12,6 +20,31 @@ public class ProfileDto {
 	public void setUserDto(UserSummaryDto userDto) {
 		this.userDto = userDto;
 	}
+
+	public List<UserSummaryDto> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(List<UserSummaryDto> friends) {
+		this.friends = friends;
+	}
+
+	public List<MessageDto> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<MessageDto> messages) {
+		this.messages = messages;
+	}
+
+	public List<ImageDto> getImages() {
+		return images;
+	}
+
+	public void setImages(List<ImageDto> images) {
+		this.images = images;
+	}
+	
 	
 	
 	
