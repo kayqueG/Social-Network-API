@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import com.kayque.socialnetwork.dto.CredentialsDto;
 import com.kayque.socialnetwork.dto.UserDto;
@@ -27,11 +26,10 @@ public class AuthenticationService {
 	private UserRepository userRepository;
 
 	@Autowired
-	private  PasswordEncoder passwordEncoder;
-	
-	@Autowired
-	private  UserMapper userMapper;
+	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+	private UserMapper userMapper;
 
 	@Transactional
 	public UserDto authenticate(CredentialsDto credentialsDto) {
@@ -41,11 +39,12 @@ public class AuthenticationService {
 			log.debug("User {} authenticated correctly", credentialsDto.getLogin());
 			return userMapper.toUserDto(user);
 		}
-		throw new HttpClientErrorException(null);
+		throw new AppException("Invalid password", HttpStatus.BAD_REQUEST);
 	}
 
 	public UserDto findByLogin(String login) {
-		User user = userRepository.findByLogin(login).orElseThrow(() -> new AppException("Login not found", HttpStatus.NOT_FOUND));
+		User user = userRepository.findByLogin(login)
+				.orElseThrow(() -> new AppException("Login not found", HttpStatus.NOT_FOUND));
 
 		return userMapper.toUserDto(user);
 	}

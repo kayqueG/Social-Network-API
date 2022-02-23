@@ -6,7 +6,10 @@ public class UserSummaryDto {
 	public String firstName;
 	public String lastName;
 	
-
+public UserSummaryDto() {
+	
+}
+	
 	public UserSummaryDto(Long id, String firstName, String lastName) {
 		this.id = id;
 		this.firstName = firstName;

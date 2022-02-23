@@ -67,5 +67,20 @@ public class UserService {
 		return usersToBeReturned;
 	
 	}
+
+	public void addFriend(UserDto userDto, Long friendId) {
+
+	User user=getUser(userDto.getId());
+	
+	User newFriend = getUser(friendId);
+	
+	if(user.getFriends()==null) {
+		user.setFriends(new ArrayList<>());
+	}
+	
+	user.getFriends().add(newFriend);
+	
+	userRepository.save(user);
+	}
 	
 }

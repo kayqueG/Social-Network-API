@@ -21,54 +21,44 @@ import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 public class User {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceUserGenerator")
-    @GenericGenerator(
-            name = "sequenceUserGenerator",
-            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-            parameters = {
-                    @Parameter(name = "sequence_name", value = "social_network_user_sequence"),
-                    @Parameter(name = "initial_value", value = "1000"),
-                    @Parameter(name = "increment_size", value = "1")
-            }
-    )
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceUserGenerator")
+	@GenericGenerator(name = "sequenceUserGenerator", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
+			@Parameter(name = "sequence_name", value = "social_network_user_sequence"),
+			@Parameter(name = "initial_value", value = "1000"), @Parameter(name = "increment_size", value = "1") })
+	private Long id;
 
-    @Column(name = "first_name", nullable = false)
-    @Size(max = 100)
-    private String firstName;
+	@Column(name = "first_name", nullable = false)
+	@Size(max = 100)
+	private String firstName;
 
-    @Column(name = "last_name", nullable = false)
-    @Size(max = 100)
-    private String lastName;
+	@Column(name = "last_name", nullable = false)
+	@Size(max = 100)
+	private String lastName;
 
-    @Column(nullable = false)
-    @Size(max = 100)
-    private String login;
+	@Column(nullable = false)
+	@Size(max = 100)
+	private String login;
 
-    @Column(nullable = false)
-    @Size(max = 100)
-    private String password;
+	@Column(nullable = false)
+	@Size(max = 100)
+	private String password;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private List<Message> messages;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private List<Message> messages;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "friends",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "friend_id", referencedColumnName = "id")
-    )
-    private List<User> friends;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "friends", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "friend_id", referencedColumnName = "id"))
+	private List<User> friends;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private List<Image> images;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private List<Image> images;
 
-    @Column(name = "created_date")
-    private LocalDateTime createdDate;
+	@Column(name = "created_date")
+	private LocalDateTime createdDate;
 
 	public String getPassword() {
 		return password;
@@ -141,13 +131,5 @@ public class User {
 	public void setImages(List<Image> images) {
 		this.images = images;
 	}
-    
-	
-	
-	
-    
-    
-    
-   	
-}
 
+}
