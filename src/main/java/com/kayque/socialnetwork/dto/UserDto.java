@@ -12,6 +12,17 @@ public class UserDto {
     private String token;
     
     
+    public UserDto() {
+    	
+    }
+    
+	public UserDto(Long id, String firstName, String lastName, String login, String token) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.login = login;
+		this.token = token;
+	}
 	public Long getId() {
 		return id;
 	}

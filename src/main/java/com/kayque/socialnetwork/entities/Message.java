@@ -41,5 +41,52 @@ public class Message {
 	    @CreatedDate
 	    @Column(name = "created_date", nullable = false)
 	    private LocalDateTime createdDate;
+
+		public Message(Long id, @Size(max = 500) String content, User user, LocalDateTime createdDate) {
+			this.id = id;
+			this.content = content;
+			this.user = user;
+			this.createdDate = createdDate;
+		}
+	    
+	    public Message() {
+	    	
+	    }
+
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
+		public String getContent() {
+			return content;
+		}
+
+		public void setContent(String content) {
+			this.content = content;
+		}
+
+		public User getUser() {
+			return user;
+		}
+
+		public void setUser(User user) {
+			this.user = user;
+		}
+
+		public LocalDateTime getCreatedDate() {
+			return createdDate;
+		}
+
+		public void setCreatedDate(LocalDateTime createdDate) {
+			this.createdDate = createdDate;
+		}
+	    
+	    
 	
+	    
+	    
 }

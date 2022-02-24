@@ -6,10 +6,12 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 
+import com.kayque.socialnetwork.dto.ImageDto;
 import com.kayque.socialnetwork.dto.ProfileDto;
 import com.kayque.socialnetwork.dto.SignUpDto;
 import com.kayque.socialnetwork.dto.UserDto;
 import com.kayque.socialnetwork.dto.UserSummaryDto;
+import com.kayque.socialnetwork.entities.Image;
 import com.kayque.socialnetwork.entities.User;
 
 @Mapper(componentModel = "spring")
@@ -28,5 +30,10 @@ public interface UserMapper {
 	@Mapping(target = "userDto.firstName", source = "firstName")
 	@Mapping(target = "userDto.lastName", source = "lastName")
 	ProfileDto userToProfileDto(User user);
+
+	
+	@Mapping(target="userDto",source="user")
+	ImageDto imageToImageDto(Image image);
+
 
 }

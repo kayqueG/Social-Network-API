@@ -15,6 +15,18 @@ public class SignUpDto {
 	
 	@NotEmpty
 	private char[] password;
+	
+	public SignUpDto() {
+		
+	}
+
+	public SignUpDto(@NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String login,
+			@NotEmpty char[] password) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.login = login;
+		this.password = password;
+	}
 
 	public String getFirstName() {
 		return firstName;

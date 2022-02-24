@@ -59,6 +59,26 @@ public class User {
 
 	@Column(name = "created_date")
 	private LocalDateTime createdDate;
+	
+	
+
+	public User(Long id, @Size(max = 100) String firstName, @Size(max = 100) String lastName,
+			@Size(max = 100) String login, @Size(max = 100) String password, List<Message> messages, List<User> friends,
+			List<Image> images, LocalDateTime createdDate) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.login = login;
+		this.password = password;
+		this.messages = messages;
+		this.friends = friends;
+		this.images = images;
+		this.createdDate = createdDate;
+	}
+	
+	public User() {
+		
+	}
 
 	public String getPassword() {
 		return password;

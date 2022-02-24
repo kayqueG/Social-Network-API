@@ -1,11 +1,15 @@
 package com.kayque.socialnetwork.dto;
 
+import java.time.LocalDateTime;
+
 public class ImageDto {
 
 	
 	private Long id;
 	private  String title;
-	private byte[] content;
+	private String path;
+	private UserSummaryDto userDto;
+	private LocalDateTime createdDate;
 	
 	
 	
@@ -13,11 +17,16 @@ public class ImageDto {
 		super();
 	}
 	
-	public ImageDto(Long id, String title, byte[] content) {
+	
+	public ImageDto(Long id, String title, String path, UserSummaryDto userDto, LocalDateTime createdDate) {
 		this.id = id;
 		this.title = title;
-		this.content = content;
+		this.path = path;
+		this.userDto = userDto;
+		this.createdDate = createdDate;
 	}
+
+
 	public Long getId() {
 		return id;
 	}
@@ -30,12 +39,37 @@ public class ImageDto {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public byte[] getContent() {
-		return content;
+
+
+	public String getPath() {
+		return path;
 	}
-	public void setContent(byte[] content) {
-		this.content = content;
+
+
+	public void setPath(String path) {
+		this.path = path;
 	}
+
+
+	public UserSummaryDto getUserDto() {
+		return userDto;
+	}
+
+
+	public void setUserDto(UserSummaryDto userDto) {
+		this.userDto = userDto;
+	}
+
+
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+
+
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
+	
 	
 	
 }
