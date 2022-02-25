@@ -39,7 +39,7 @@ public class Message {
 	    private User user;
 
 	    @CreatedDate
-	    @Column(name = "created_date", nullable = false)
+	    @Column(name = "created_date")
 	    private LocalDateTime createdDate;
 
 		public Message(Long id, @Size(max = 500) String content, User user, LocalDateTime createdDate) {
@@ -84,6 +84,7 @@ public class Message {
 		public void setCreatedDate(LocalDateTime createdDate) {
 			this.createdDate = createdDate;
 		}
+		
 	    
 	    
 	

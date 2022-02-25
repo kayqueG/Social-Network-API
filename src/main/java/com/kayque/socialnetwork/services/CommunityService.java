@@ -75,13 +75,12 @@ public class CommunityService {
 	
 	
 	private User getUser(UserDto userDto) {
-		// TODO Auto-generated method stub
 		return userRepository.findById(userDto.getId())
 				.orElseThrow(()->new AppException("User not found",HttpStatus.NOT_FOUND));
 	}
 
 	
-	public MessageDto postMassage(UserDto userDto,MessageDto messageDto) {
+	public MessageDto postMessage(UserDto userDto,MessageDto messageDto) {
 		User user=getUser(userDto);
 		
 		Message message= messageMapper.messageDtoToMessage(messageDto);
@@ -132,8 +131,20 @@ public class CommunityService {
 	
 	}
 	
-	public List<ImageDto> getCommunityImages(int page){
-		return Arrays.asList(new ImageDto(1L,"First title",null),
-				new ImageDto(2L,"Second  title",null));
+	public List<ImageDto> getCommunityImages(UserDto userDto,int page){
+		User user = getUser(userDto);
+		
+		   List<Long> friendIds = Optional.of(user.getFriends())
+	                .map(friends -> friends.stream().map(User::getId).collect(Collectors.toList()))
+	                .orElse(Collections.emptyList());
+		   
+		   friendIds.add(user.getId());
+		   
+		   List<Image> images = imageRepository.findCommunityImages(friendIds,
+	                PageRequest.of(page, PAGE_SIZE));
+		   
+		   return userMapper.imagesToImageDtos(images);
+		
+		
 	}
 }

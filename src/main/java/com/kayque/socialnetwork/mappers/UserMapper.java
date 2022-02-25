@@ -35,5 +35,7 @@ public interface UserMapper {
 	@Mapping(target="userDto",source="user")
 	ImageDto imageToImageDto(Image image);
 
+	List<ImageDto> imagesToImageDtos(List<Image> images);
+
 
 }
