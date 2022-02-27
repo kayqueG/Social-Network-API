@@ -35,7 +35,7 @@ public class CommunityService {
 
 	
 
-    @Value("${app.nfs.path:/tmp}")
+    @Value("app.nfs.path")
     private String nfsPath;
 	
 	private static final int PAGE_SIZE=10;
@@ -97,25 +97,17 @@ public class CommunityService {
 		return messageMapper.messageToMessageDto(savedMessage);
 		
 	}
-	public ImageDto postImage(UserDto userDto,MultipartFile file,String title) throws IOException {
+	public ImageDto postImage(UserDto userDto,String link,String title) throws IOException {
 		
 		User user=getUser(userDto);
 		
-		String path=this.nfsPath
-				+"/"+user.getId()
-				+"/"+UUID.randomUUID()
-				+"-"+file.getOriginalFilename();
 		
-		Image image= new Image(null,title,path,user);
-		
-		File storedImage= new File(path);
-		
-		if(!storedImage.getParentFile().exists()) {
-			storedImage.getParentFile().mkdir();
-		}
-		
-		storedImage.createNewFile();
-		file.transferTo(storedImage);
+		 Image image = Image.builder()
+	                .title(title)
+	                .user(user)
+	                .link(link)
+	                .build();
+
 		
 		if(user.getImages()==null) {
 			user.setImages(new ArrayList<>());
@@ -124,7 +116,6 @@ public class CommunityService {
 		user.getImages().add(image);
 		
 		userRepository.save(user);
-		
 		
 		return userMapper.imageToImageDto(image);
 		

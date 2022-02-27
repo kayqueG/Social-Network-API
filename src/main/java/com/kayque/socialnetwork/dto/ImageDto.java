@@ -7,21 +7,20 @@ public class ImageDto {
 	
 	private Long id;
 	private  String title;
-	private String path;
+	private String link;
 	private UserSummaryDto userDto;
 	private LocalDateTime createdDate;
 	
 	
 	
 	public ImageDto() {
-		super();
 	}
 	
 	
-	public ImageDto(Long id, String title, String path, UserSummaryDto userDto, LocalDateTime createdDate) {
+	public ImageDto(Long id, String title, String link, UserSummaryDto userDto, LocalDateTime createdDate) {
 		this.id = id;
 		this.title = title;
-		this.path = path;
+		this.link = link;
 		this.userDto = userDto;
 		this.createdDate = createdDate;
 	}
@@ -41,13 +40,13 @@ public class ImageDto {
 	}
 
 
-	public String getPath() {
-		return path;
+	public String getLink() {
+		return link;
 	}
 
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 

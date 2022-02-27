@@ -51,10 +51,10 @@ public class CommunityController {
 	}
 	
 	@PostMapping("/images")
-	public ResponseEntity<ImageDto> postImage(@AuthenticationPrincipal UserDto user,@RequestParam MultipartFile file,
+	public ResponseEntity<ImageDto> postImage(@AuthenticationPrincipal UserDto user,@RequestBody ImageDto image,
 			@RequestParam(value="title") String title) throws IOException {
 		
-		return ResponseEntity.created(URI.create("/v1/community/images")).body(communityService.postImage(user,file,title));
+		return ResponseEntity.created(URI.create("/v1/community/images")).body(communityService.postImage(user,image.getLink(),title));
 	}
 	
 	
