@@ -2,6 +2,8 @@ package com.kayque.socialnetwork.services;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -106,6 +108,7 @@ public class CommunityService {
 	                .title(title)
 	                .user(user)
 	                .link(link)
+	                .createdDate(LocalDateTime.now(ZoneId.of("UTC")))
 	                .build();
 
 		

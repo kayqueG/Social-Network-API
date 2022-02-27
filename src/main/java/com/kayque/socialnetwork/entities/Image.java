@@ -58,7 +58,6 @@ public class Image {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @CreatedDate
     @Column(name = "created_date")
     private LocalDateTime createdDate;
 

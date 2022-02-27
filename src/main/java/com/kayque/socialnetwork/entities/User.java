@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,13 +14,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
-import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.ToString;
 
 @Entity
+@AllArgsConstructor
+@Builder
+@Data
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "social_network_user")
+@ToString(exclude = "friends")
 public class User {
 
 	@Id
@@ -59,26 +72,6 @@ public class User {
 
 	@Column(name = "created_date")
 	private LocalDateTime createdDate;
-	
-	
-
-	public User(Long id, @Size(max = 100) String firstName, @Size(max = 100) String lastName,
-			@Size(max = 100) String login, @Size(max = 100) String password, List<Message> messages, List<User> friends,
-			List<Image> images, LocalDateTime createdDate) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.login = login;
-		this.password = password;
-		this.messages = messages;
-		this.friends = friends;
-		this.images = images;
-		this.createdDate = createdDate;
-	}
-	
-	public User() {
-		
-	}
 
 	public String getPassword() {
 		return password;
