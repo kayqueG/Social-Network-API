@@ -2,7 +2,6 @@ package com.kayque.socialnetwork.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +16,14 @@ import com.kayque.socialnetwork.dto.UserDto;
 import com.kayque.socialnetwork.dto.UserSummaryDto;
 import com.kayque.socialnetwork.services.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/v1/users")
 public class UserController {
 	
-	@Autowired
-	private UserService userService;
+	private final UserService userService;
 	
 	@GetMapping("/{userId}/profile")
 	public ResponseEntity<ProfileDto> getUserProfile(@PathVariable Long userId){

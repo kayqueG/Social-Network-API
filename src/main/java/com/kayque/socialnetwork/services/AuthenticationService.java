@@ -4,7 +4,6 @@ import java.nio.CharBuffer;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,20 +15,19 @@ import com.kayque.socialnetwork.exceptions.AppException;
 import com.kayque.socialnetwork.mappers.UserMapper;
 import com.kayque.socialnetwork.repositories.UserRepository;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class AuthenticationService {
 
-	@Autowired
-	private UserRepository userRepository;
+	private final UserRepository userRepository;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+	private final PasswordEncoder passwordEncoder;
 
-	@Autowired
-	private UserMapper userMapper;
+	private final UserMapper userMapper;
 
 	@Transactional
 	public UserDto authenticate(CredentialsDto credentialsDto) {

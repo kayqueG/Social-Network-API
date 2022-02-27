@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.springframework.stereotype.Component;
 
 import com.kayque.socialnetwork.dto.ImageDto;
 import com.kayque.socialnetwork.dto.ProfileDto;

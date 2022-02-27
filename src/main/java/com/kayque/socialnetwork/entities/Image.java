@@ -15,7 +15,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.AllArgsConstructor;
