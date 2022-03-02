@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import com.kayque.socialnetwork.dto.UserDto;
 import com.kayque.socialnetwork.entities.User;
+import com.kayque.socialnetwork.mappers.UserMapper;
+import com.kayque.socialnetwork.mappers.UserMapperImpl;
 
 public class UserMapperTest {
 

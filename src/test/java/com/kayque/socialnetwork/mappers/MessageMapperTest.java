@@ -12,6 +12,10 @@ import org.springframework.test.util.ReflectionTestUtils;
 import com.kayque.socialnetwork.dto.MessageDto;
 import com.kayque.socialnetwork.entities.Message;
 import com.kayque.socialnetwork.entities.User;
+import com.kayque.socialnetwork.mappers.MessageMapper;
+import com.kayque.socialnetwork.mappers.MessageMapperImpl;
+import com.kayque.socialnetwork.mappers.UserMapper;
+import com.kayque.socialnetwork.mappers.UserMapperImpl;
 
 public class MessageMapperTest {
 

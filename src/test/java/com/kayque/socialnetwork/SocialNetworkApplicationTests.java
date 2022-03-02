@@ -1,4 +1,4 @@
-package com.kayque.socialnetwork.mappers;
+package com.kayque.socialnetwork;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
