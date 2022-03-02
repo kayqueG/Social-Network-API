@@ -19,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 public class AuthenticationService {
 
@@ -34,7 +33,6 @@ public class AuthenticationService {
 		User user = userRepository.findByLogin(credentialsDto.getLogin()).orElse(null);
 
 		if (passwordEncoder.matches(CharBuffer.wrap(credentialsDto.getPassword()), user.getPassword())) {
-			log.debug("User {} authenticated correctly", credentialsDto.getLogin());
 			return userMapper.toUserDto(user);
 		}
 		throw new AppException("Invalid password", HttpStatus.BAD_REQUEST);
